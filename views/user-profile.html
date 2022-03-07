@@ -1,0 +1,30 @@
+<main class="main-content">
+    {if="$msgSuccess != '' "}
+        <div class="div-statusbar status-success">
+            <span class="statusbar-msg"><i class="fa-solid fa-check"></i> {$msgSuccess}</span>
+            <span class="close-statusbar" onclick="closestatusbar();"><i class="fas fa-times"></i></span>
+        </div>
+        {/if}
+    <div class="user-profile-container">
+        
+        <form action="/profile/user-photo-edit" class="div-user-photo" method="POST" enctype="multipart/form-data">
+            <label for="photouser" class="img-overlay">
+                <img src="{$user.photouser}" alt="" class="profile-photo-user">
+            </label>
+            <input type="file" name="photouser" id="photouser" class="hidden">
+            <button type="submit" class="btn btn-min btn-green"><i class="fa-solid fa-camera"></i> Trocar Foto de
+                Perfil</button>
+        </form>
+        <div class="div-user-profile-info">
+            <h1 class="name-profile-user">Olá, {$user.nameperson}</h1>
+            <h2 class="profile-category-action">Recursos para o usuário</h2>
+            <hr class="hr-separator">
+            <div class="actions-user-profile">
+                <a href="/profile/edit" class="btn btn-min btn-blue"><i class="fas fa-edit"></i> Editar</a>
+                <a href="/profile/change-password" class="btn btn-min btn-green"><i class="fas fa-lock"></i> Alterar Senha</a>
+                <a href="/profile/orders" class="btn btn-min btn-brown"><i class="fas fa-list"></i> Meus Pedidos</a>
+                <a href="/profile/configurations" class="btn btn-min btn-grey"><i class="fa-solid fa-gear"></i> Configurações</a>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,23 @@
+{
+    "name": "v7ctor/guitarshop",
+    "description": "Loja Ecommerce voltada à venda de guitarras de guitarras e violões",
+    "authors": [
+        {
+            "name": "V7ctor",
+            "email": "joaovictor89437@gmail.com"
+        }
+    ],
+    "type": "project",
+    "license": "Free",
+    "minimum-stability": "dev",
+    "require": {
+    	"phpmailer/phpmailer": "^6.5",
+    	"slim/slim":"2.0",
+    	"rain/raintpl":"3.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dist\\": "vendor\\dist\\src"
+        }
+    }
+}

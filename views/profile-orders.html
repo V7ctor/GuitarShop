@@ -1,0 +1,41 @@
+<main class="main-content">
+    <div class="main-container">
+        <h1 class="title-form text-center">Todos os pedidos emitidos</h1>
+        <table class="table-large">
+            <thead class="thead">
+                <tr class="tr">
+                    <th class="th">#</th>
+                    <th class="th">Valor Total</th>
+                    <th class="th">Status</th>
+                    <th class="th">Endereço</th>
+                    <th class="th">Ações</th>
+                </tr>
+            </thead>
+            <tfoot class="tfoot">
+            </tfoot>
+            <tbody class="tbody">
+                {loop="$orders"}
+                <tr class="tr">
+                    <td class="td">{$value.idorder}</td>
+                    <td class="td">R${function="formatPrice($value.vltotal)"}</td>
+                    <td class="td">{$value.orderstatus}</td>
+                    <td class="td td-text-min">{$value.address}, <br>{$value.district}, {$value.city} - {$value.state}
+                        <br>CEP: {$value.zipcode}</td>
+                    <td class="td td-btns">
+                        <a href="/order/{$value.idorder}" class="btn btn-min btn-blue"><i class="fa-solid fa-print"></i>
+                            Imprimir Boleto</a>
+                        <a href="/profile/orders/{$value.idorder}" class="btn btn-min btn-green"><i class="fas fa-list"></i> 
+                            Detalhes</a>
+                    </td>
+                </tr>
+                {else}
+                <div class="div-statusbar status-error">
+                    <span class="statusbar-msg"><i class="fa-solid fa-triangle-exclamation"></i> Nenhum Pedido
+                        encontrado</span>
+                    <span class="close-statusbar" onclick="closestatusbar();"><i class="fas fa-times"></i></span>
+                </div>
+                {/loop}
+            </tbody>
+        </table>
+    </div>
+</main>

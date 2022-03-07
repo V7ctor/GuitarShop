@@ -1,0 +1,55 @@
+<style>
+    @media print {
+        .info-top,
+        .header,
+        .footer,
+        .form-btns {
+            display:none!important;
+        }
+
+        .table-large {
+            width: 100%!important;
+        }
+    }
+</style>
+<main class="main-content">
+    <div class="main-container">
+        <h1 class="title-form text-center">Detalhes do Pedido N°{$order.idorder}</h1>
+        <table class="table-large">
+            <thead class="thead">
+                <tr class="tr">
+                    <th class="th">Produto</th>
+                    <th class="th">Preço</th>
+                    <th class="th">Frete</th>
+                    <th class="th">Total do Pedido</th>
+                </tr>
+            </thead>
+            <tfoot class="tfoot">
+                <tr class="tr">
+                    <td class="td">Subtotal = R${$cart.vlsubtotal}</span>
+                    </td>
+                </tr>               
+            </tfoot>
+            <tbody class="tbody">
+                {loop="$products"}
+                <tr class="tr">
+                    <td class="td"> {$value.nameproduct} <strong class="product-quantity">× {$value.nrqtd}</strong> </td>
+                    <td class="td">R$ {$value.vltotal}</td>
+                    <td class="td"> R${$cart.vlfreight}</td>
+                    <td class="td">R${$cart.vltotal}</td>
+                </tr>
+                {else}
+                <div class="div-statusbar status-error">
+                    <span class="statusbar-msg"><i class="fa-solid fa-triangle-exclamation"></i> Nenhum Pedido
+                        encontrado</span>
+                    <span class="close-statusbar" onclick="closestatusbar();"><i class="fas fa-times"></i></span>
+                </div>
+                {/loop}
+            </tbody>
+        </table>
+        <div class="form-btns">
+            <button type="submit" class="btn btn-medium btn-blue" onclick="window.print()">
+            <i class="fa-solid fa-print"></i> Imprimir</button>
+        </div>
+    </div>
+</main>

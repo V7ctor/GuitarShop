@@ -1,0 +1,40 @@
+<main class="main-content">
+    <h1 class="title-page">Promoções emitidas</h1>
+    <table class="table-large">
+        <thead class="thead">
+            <tr class="tr">
+                <th class="th">#</th>
+                <th class="th">Produto</th>
+                <th class="th">Preço Antigo</th>
+                <th class="th">Preço Promoção</th>
+                <th class="th">Data de Início</th>
+                <th class="th">Data de Fim</th>
+                <th class="th">Ações</th>
+            </tr>
+        </thead>
+        <tfoot class="tfoot">
+        </tfoot>
+        <tbody class="tbody">
+            {loop="$sales"}
+            <tr class="tr">
+                <td class="td">{$value.idsaleproduct}</td>
+                <td class="td">{$value.nameproduct}</td>
+                <td class="td">R${function="formatPrice($value.oldprice)"}</td>
+                <td class="td"><b>R${function="formatPrice($value.newprice)"}</b></td>
+                <td class="td">{function="formatDate($value.dtregister)"}</td>
+                <td class="td">{function="formatDate($value.dtendsale)"}</td>
+                <td class="td td-btns">
+                    <a href="/admin/sales/{$value.idsaleproduct}/delete/{$value.idproduct}" class="btn btn-min btn-red"
+                        onclick="return confirm('Deseja realmente excluir a promoção do produto {$value.nameproduct} ?')"><i
+                            class="fas fa-trash-alt"></i> Excluir</a>
+                </td>
+            </tr>
+            {/loop}
+        </tbody>
+    </table>
+    <div class="pagination">
+        {loop="$pages"}
+        <a class="page" href="{$value.href}">{$value.text}</a>
+        {/loop}
+    </div>
+</main>

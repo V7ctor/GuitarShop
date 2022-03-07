@@ -1,0 +1,18 @@
+<section class="section-products">
+    <h1 class="section-title">Confira os instrumentos da categoria {$category.namecategory}</h1>
+    <div class="container-products">
+        {loop="$productscategory"}
+        <div class="card-product">
+            <img src="{$value.photoproduct}" alt="Imagem ilustrativa do produto {$value.nameproduct}"
+                class="card-img-product">
+            <span class="card-title-product">{$value.nameproduct}</span>
+            <ins class="card-price-product">R$ {function="formatPrice($value.vlprice)"}</ins>
+            <div class="card-btn">
+                <a href="#" class="btn btn-min btn-green"><i class="fas fa-shopping-cart"></i> Carrinho</a>
+                <a href="/product-details/{$value.urlproduct}" class="btn btn-min btn-grey"><i
+                        class="fas fa-paperclip"></i> Detalhes</a>
+            </div>
+        </div>
+        {/loop}
+    </div>
+</section>

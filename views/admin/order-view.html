@@ -1,0 +1,98 @@
+<main class="main-content">
+    <h1>
+        Pedido N°{$order.idorder}
+    </h1>
+    <div class="div-logo-order">
+        <img class="table-img" src="/assets/img/guitarshoplogo.png" alt="Logo">
+        <span class="div-logo-date">Data: {function="date('d/m/Y')"}</span>
+    </div>
+    <div class="address-order">
+        De
+        <address>
+            <strong>GuitarShop</strong><br>
+            Rua 03 de Outubro, 256 - Jardim Helena, 08090‑284<br>
+            São Paulo<br>
+            Telefone: (11) 3171-3080<br>
+            E-mail: suporte@guitarshop.com.br
+        </address>
+    </div>
+    Para
+    <div class="address-order">
+        <address>
+            <strong>{$order.nameperson}</strong><br>
+            {$order.address}, {$order.complement}<br>
+            {$order.city} - {$order.state}<br>
+            {if="$order.phoneperson && $order.phoneperson!='0'"}Telefone: {$order.phoneperson}<br>{/if}
+            E-mail: {$order.emailuser}
+        </address>
+        <b>Pedido #{$order.idorder}</b><br>
+        <br>
+        <b>Emitido em:</b> {function="formatDate($order.dtregister)"}<br>
+        <b>Pago em:</b> {function="formatDate($order.dtregister)"}
+    </div>
+
+    <table class="table-large">
+        <thead class="thead">
+            <tr class="tr">
+                <th class="th">Qtd</th>
+                <th class="th">Produto</th>
+                <th class="th">Código #</th>
+                <th class="th">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {loop="$products"}
+            <tr class="tr">
+                <td class="td">{$value.nrqtd}</td>
+                <td class="td">{$value.nameproduct}</td>
+                <td class="td">{$value.idproduct}</td>
+                <td class="td">R${function="formatPrice($order.vltotal)"}</td>
+            </tr>
+            {/loop}
+        </tbody>
+    </table>
+
+    <p class="subtitle-order">Forma de Pagamento</p>
+
+    <table class="table-large">
+        <tbody class="tbody">
+            <tr class="tr">
+                <th class="th" style="width:180px;">Método de Pagamento:</th>
+                <td class="td">Boleto</td>
+            </tr>
+            <tr class="tr">
+                <th class="th">Parcelas:</th>
+                <td class="td">1x</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="subtitle-order">Resumo do Pedido</p>
+
+    <table class="table-large">
+        <tbody class="tbody">
+            <tr class="tr">
+                <th class="th" style="width:50%">Subtotal:</th>
+                <td class="td">R${function="formatPrice($cart.vlsubtotal)"}</td>
+            </tr>
+            <tr class="tr">
+                <th class="th">Frete:</th>
+                <td class="td">R${function="formatPrice($cart.vlfreight)"}</td>
+            </tr>
+            <tr class="tr">
+                <th class="th">Total:</th>
+                <td class="td">R${function="formatPrice($cart.vltotal)"}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-btns">
+        <button type="button" onclick="window.open('/boleto/{$order.idorder}')" class="btn btn-min btn-grey"
+            style="margin-left: 5px;">
+            <i class="fa fa-barcode"></i> Boleto
+        </button>
+        <button type="button" onclick="window.print()" class="btn btn-min btn-yellow" style="margin-right: 5px;">
+            <i class="fa fa-print"></i> Imprimir
+        </button>
+    </div>
+</main>

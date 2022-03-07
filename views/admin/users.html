@@ -1,0 +1,56 @@
+
+    <main class="main-content">
+        {if="$success != '' "}
+        <div class="div-statusbar status-success">
+            <span class="statusbar-msg"><i class="fa-solid fa-check"></i> {$success}</span>
+            <span class="close-statusbar" onclick="closestatusbar();"><i class="fas fa-times"></i></span>
+        </div>
+        {/if}
+        {if="$error != '' "}
+    <div class="div-statusbar status-error">
+        <span class="statusbar-msg"><i class="fa-solid fa-triangle-exclamation"></i> {$error}</span>
+        <span class="close-statusbar" onclick="closestatusbar();"><i class="fas fa-times"></i></span>
+    </div>
+    {/if}
+        <h1 class="title-page">Usuários Cadastrados</h1>
+        <div class="div-register-and-search">
+            <a href="/admin/users/user-register" class="btn btn-medium btn-green"><i class="fas fa-plus"></i> Cadastrar</a>
+            <form class="form-search" action="/admin/users">
+                <input type="text" class="input-search" value="{$search}" name="search" placeholder="Pesquise por nome ou email">
+                <button type="submit" class="submit-search"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <table class="table-large">
+            <thead class="thead">
+                <tr class="tr">
+                    <th class="th">Foto</th>
+                    <th class="th">Nome</th>
+                    <th class="th">Email</th>
+                    <th class="th">Administrador</th>
+                    <th class="th">Ações</th>
+                </tr>
+            </thead>
+            <tfoot class="tfoot">
+            </tfoot>
+            <tbody class="tbody">
+                {loop="$users"}
+                <tr class="tr">
+                    <td class="td"><img src="{$value.photouser}" alt="Imagem ilustrativa do usuário {$value.photouser}" class="table-img"></td>
+                    <td class="td">{$value.nameperson}</td>
+                    <td class="td">{$value.emailuser}</td>
+                    <td class="td">{if="$value.inadmin == 1"}Sim{else}Não{/if}</td>
+                    <td class="td td-btns">
+                        <a href="/admin/users/{$value.iduser}" class="btn btn-min btn-blue"><i class="fas fa-edit"></i> Editar</a>
+                        <a href="/admin/users/{$value.iduser}/password" class="btn btn-min btn-yellow"><i class="fas fa-lock"></i> Senha</a>
+                        <a href="/admin/users/{$value.iduser}/delete" class="btn btn-min btn-red" onclick="return confirm('Deseja realmente excluir o usuário {$value.nameperson} ?')"><i class="fas fa-trash-alt"></i> Excluir</a>
+                    </td>
+                </tr>
+                {/loop}
+            </tbody>
+        </table>
+        <div class="pagination">
+            {loop="$pages"}
+            <a class="page" href="{$value.href}">{$value.text}</a>
+            {/loop}
+        </div>
+    </main>

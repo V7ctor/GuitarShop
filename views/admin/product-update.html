@@ -1,0 +1,35 @@
+
+    <main class="main-content">
+        <h1 class="title-page">Atualizar Produto</h1>
+        <form action="/admin/products/{$product.idproduct}/product-update" class="form" method="POST" enctype="multipart/form-data">
+            <label for="nameproduct" class="label-form">Nome</label>
+            <input type="text" class="input-form" placeholder="Insira o nome do produto" name="nameproduct" id="nameproduct" autocomplete="off" value="{$product.nameproduct}">
+            <label for="vlprice" class="label-form">Preço</label>
+            <input type="number" class="input-form" placeholder="Insira o preço do produto" name="vlprice" id="vlprice" step="00.01" autocomplete="off" value="{$product.vlprice}">
+            <label for="vlwidth" class="label-form">Largura</label>
+            <input type="text" class="input-form" placeholder="Insira a Largura do produto" name="vlwidth" id="vlwidth" autocomplete="off" value="{$product.vlwidth}">
+            <label for="vlheight" class="label-form">Altura</label>
+            <input type="text" class="input-form" placeholder="Insira a Altura do produto" name="vlheight" id="vlheight" autocomplete="off" value="{$product.vlheight}">
+            <label for="vllength" class="label-form">Comprimento</label>
+            <input type="text" class="input-form" placeholder="Insira o comprimento do produto" name="vllength" id="vllength" autocomplete="off" value="{$product.vllength}">
+            <label for="vllength" class="label-form">Peso</label>
+            <input type="text" class="input-form" placeholder="Insira o peso do produto" name="vlweight" id="vlweight" autocomplete="off" value="{$product.vlweight}">
+            <label for="vllength" class="label-form">URL</label>
+            <input type="text" class="input-form" placeholder="Insira uma URL personalizada para o produto" name="urlproduct" id="urlproduct" value="{$product.urlproduct}" autocomplete="off">
+            <label for="descriptionproduct" class="label-form">Descrição do Produto</label>
+            <textarea class="input-form" rows="10" placeholder="Insira uma descrição para o produto" name="descriptionproduct" id="descriptionproduct">{$product.descriptionproduct}</textarea>
+            <label for="brandproduct" class="label-form">Marca do Produto</label>
+            <select name="brandproduct" id="brandproduct" class="input-form">
+                <option value="{$brandselected.idbrand}" selected>{$brandselected.namebrand}</option>
+                {loop="$brands"}
+                    <option value="{$value.idbrand}">{$value.namebrand}</option>
+                {/loop}
+            </select>
+            <label for="photoproduct" class="label-form">Foto do Produto</label>
+            <input type="file" name="photoproduct" id="photoproduct" class="input-form">
+            <div class="form-btns">
+                <button type="submit" class="btn btn-medium btn-blue"><i class="fas fa-plus"></i> Atualizar Dados</button>
+                <button type="reset" class="btn btn-medium btn-grey"><i class="fas fa-broom"></i> Limpar</button>
+            </div>
+        </form>
+    </main>

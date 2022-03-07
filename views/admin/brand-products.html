@@ -1,0 +1,31 @@
+
+    <main class="main-content">
+        <h1 class="title-page">Produtos com a marca {$brand.namebrand}</h1>
+        <table class="table-large">
+            <thead class="thead">
+                <tr class="tr">
+                    <th class="th">#</th>
+                    <th class="th">Foto</th>
+                    <th class="th">Nome</th>
+                    <th class="th">Preço</th>
+                </tr>
+            </thead>
+            <tfoot class="tfoot">
+            </tfoot>
+            <tbody class="tbody">
+                {loop="$brandproducts"}
+                <tr class="tr">
+                    <td class="td">{$value.idproduct}</td>
+                    <td class="td"><img src="{$value.photoproduct}" alt="Imagem ilustrativa do produto {$value.nameproduct}" class="table-img"></td>
+                    <td class="td">{$value.nameproduct}</td>
+                    <td class="td">{$value.vlprice}</td>
+                </tr>
+                {/loop}
+            </tbody>
+        </table>
+        <div class="pagination">
+            <a class="page" href="#">1</a>
+            <a class="page" href="#">2</a>
+            <a class="page" href="#">3</a>
+        </div>
+    </main>

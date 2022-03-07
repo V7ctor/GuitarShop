@@ -1,0 +1,56 @@
+
+    <main class="main-content">
+        {if="$success != '' "}
+        <div class="div-statusbar status-success">
+            <span class="statusbar-msg"><i class="fa-solid fa-check"></i> {$success}</span>
+            <span class="close-statusbar" onclick="closestatusbar();"><i class="fas fa-times"></i></span>
+        </div>
+        {/if}
+        {if="$error != '' "}
+        <div class="div-statusbar status-error">
+            <span class="statusbar-msg"><i class="fa-solid fa-triangle-exclamation"></i> {$error}</span>
+            <span class="close-statusbar" onclick="closestatusbar();"><i class="fas fa-times"></i></span>
+        </div>
+        {/if}
+        <h1 class="title-page">Marcas Cadastradas</h1>
+        <div class="div-register-and-search">
+            <a href="/admin/brand-register" class="btn btn-medium btn-green"><i class="fas fa-plus"></i> Cadastrar</a>
+            <form class="form-search" action="/admin/brands">
+                <input type="text" class="input-search" value="{$search}" placeholder="Pesquise por marca" name="search">
+                <button type="submit" class="submit-search"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <table class="table-large">
+            <thead class="thead">
+                <tr class="tr">
+                    <th class="th">#</th>
+                    <th class="th">Nome</th>
+                    <th class="th">Cor Background</th>
+                    <th class="th">Cor de Texto</th>
+                    <th class="th">Ações</th>
+                </tr>
+            </thead>
+            <tfoot class="tfoot">
+            </tfoot>
+            <tbody class="tbody">
+                {loop="$brands"}
+                <tr class="tr">
+                    <td class="td">{$value.idbrand}</td>
+                    <td class="td">{$value.namebrand}</td>
+                    <td class="td"><span class="span-color-demonstration" style="background-color: {$value.colorbrand};"></span></td>
+                    <td class="td"><span class="span-color-demonstration" style="background-color: {$value.textcolorbrand};"></span></td>
+                    <td class="td td-btns">
+                        <a href="/admin/brand/{$value.idbrand}" class="btn btn-min btn-blue"><i class="fas fa-edit"></i> Editar</a>
+                        <a href="/admin/brand/{$value.idbrand}/products" class="btn btn-min btn-yellow"><i class="fas fa-guitar"></i> Produtos</a>
+                        <a href="/admin/brand/{$value.idbrand}/delete" class="btn btn-min btn-red" onclick="return confirm('Deseja realmente excluir a marca {$value.namebrand} ?')"><i class="fas fa-trash-alt"></i> Excluir</a>
+                    </td>
+                </tr>
+                {/loop}
+            </tbody>
+        </table>
+        <div class="pagination">
+            {loop="$pages"}
+            <a class="page" href="{$value.href}">{$value.text}</a>
+            {/loop}
+        </div>
+    </main>

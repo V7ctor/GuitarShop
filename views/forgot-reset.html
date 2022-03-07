@@ -1,0 +1,15 @@
+<main class="main-content">
+    <div class="main-container">
+        <h2 class="title-form text-center">Olá {$name}, digite uma nova senha:</h2>
+        <form class="form" method="post" action="/forgot/reset">
+                <input type="hidden" name="code" value="{$code}">
+                <label for="password" class="label-form">Nova senha <span class="required">*</span>
+                </label>
+                <input type="password" id="password" name="password" class="input-form" 
+                placeholder="Insira uma nova senha">
+                <div class="form-btns">
+                    <input type="submit" value="Enviar" name="login" class="btn btn-min btn-green">
+                </div>
+        </form>   
+    </div>
+</main>

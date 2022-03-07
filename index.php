@@ -1,0 +1,22 @@
+<?php
+    session_start();
+    
+    require_once("vendor/autoload.php");
+    use Slim\Slim;
+
+    $app = new Slim;
+
+    $app->config("debug", true);
+
+    require_once("admin.php");
+    require_once("admin-products.php");
+    require_once("admin-users.php");
+    require_once("admin-brands.php");
+    require_once("admin-categories.php");
+    require_once("admin-orders.php");
+    require_once("admin-sales.php");
+    require_once("site.php");
+    require_once("Utils.php");
+
+    $app->run();
+?>

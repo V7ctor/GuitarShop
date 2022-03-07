@@ -1,0 +1,89 @@
+<main class="main-content">
+    {if="$error != '' "}
+    <div class="div-statusbar status-error">
+        <span class="statusbar-msg"><i class="fa-solid fa-triangle-exclamation"></i> {$error}</span>
+        <span class="close-statusbar" onclick="closestatusbar();"><i class="fas fa-times"></i></span>
+    </div>
+    {/if}
+    <div class="main-container">
+        <h1 class="title-page">Carrinho</h1>
+        <form action="/checkout">
+            <table class="table-large">
+                <thead class="thead">
+                    <tr class="tr">
+                        <th class="th">#</th>
+                        <th class="th">Foto</th>
+                        <th class="th">Nome</th>
+                        <th class="th">Quantidade</th>
+                        <th class="th">Preço</th>
+                        <th class="th">SubTotal</th>
+                        <th class="th">Ações</th>
+                    </tr>
+                </thead>
+                <tfoot class="tfoot">
+                </tfoot>
+                <tbody class="tbody">
+                    {loop="$products"}
+                    <tr class="tr">
+                        <td class="td">{$value.idproduct}</td>
+                        <td class="td"><img src="{$value.photoproduct}"
+                                alt="Imagem ilustrativa do produto {$value.nameproduct}" class="table-img"></td>
+                        <td class="td">{$value.nameproduct}</td>
+                        <td class="td">
+                            <div class="quantity buttons_added">
+                                <input type="button" class="btn btn-red btn-min" value="-"
+                                    onclick="window.location.href = '/cart/{$value.idproduct}/minus'">
+                                <input type="number" size="4" class="input-form" title="Qty" value="{$value.nrqtd}"
+                                    min="0" step="1" readonly>
+                                <input type="button" class="btn btn-green btn-min" value="+"
+                                    onclick="window.location.href = '/cart/{$value.idproduct}/add'">
+                            </div>
+                        </td>
+                        <td class="td">R$ {function="formatPrice($value.vlprice)"}</td>
+                        <td class="td">R$ {function="formatPrice($value.vltotal)"}</td>
+                        <td class="td td-btns">
+                            <a href="/cart/{$value.idproduct}/remove" class="btn btn-min btn-red"
+                                onclick="return confirm('Deseja realmente excluir o produto {$value.nameproduct} ?')"><i
+                                    class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    {/loop}
+                </tbody>
+            </table>
+            <div class="cart-info">
+                <div class="freight-div">
+                    <h2 class="subtitle-cart">Cálculo de Frete</h2>
+                    <label for="cep">CEP:</label>
+                    <input type="text" placeholder="00000-000" value="{$cart.zipcode}" id="cep" class="input-form" name="zipcode">
+                    <button type="submit" formmethod="post" formaction="/cart/freight" class="btn btn-min btn-blue"><i
+                            class="fa-solid fa-location-arrow"></i> Calcular Frete</button>
+                </div>
+                <div>
+                    <h2 class="subtitle-cart">Resumo da Compra</h2>
+                    <table cellspacing="0" class="table-cart-totals">
+                        <tbody>
+                            <tr>
+                                <th class="table-cart-totals-th">Subtotal</th>
+                                <td class="table-cart-totals-td">R${function="formatPrice($cart.vlsubtotal)"}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-cart-totals-th">Frete</th>
+                                <td class="table-cart-totals-td">R${function="formatPrice($cart.vlfreight)"}{if="$cart.nrdays > 0"} <small>prazo de {$cart.nrdays} dia(s)</small>{/if}</td>
+                            </tr>
+                            <tr class="table-tr">
+                                <th class="table-cart-totals-th">Total</th>
+                                <td class="table-cart-totals-td">R${function="formatPrice($cart.vltotal)"}</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="form-btns">
+                        <button type="submit" name="proceed" class="btn btn-green btn-medium"><i
+                                class="fa-solid fa-dollar-sign"></i> Finalizar Compra</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+    </div>
+    </div>
+</main>

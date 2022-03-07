@@ -1,0 +1,10 @@
+<main class="main-content">
+    {if="$success != '' "}
+    <div class="div-statusbar status-success">
+        <span class="statusbar-msg"><i class="fa-solid fa-check"></i> {$success}</span>
+        <span class="close-statusbar" onclick="closestatusbar();"><i class="fas fa-times"></i></span>
+    </div>
+    {/if}
+
+    <h1 class="title-page">Seja Bem Vindo, {$user.nameperson}</h1>
+</main>

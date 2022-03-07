@@ -1,0 +1,56 @@
+<main class="main-content">
+    {if="$success != '' "}
+    <div class="div-statusbar status-success">
+        <span class="statusbar-msg">{$success} <i class="fa-regular fa-comment-dots"></i></span>
+        <span class="close-statusbar" onclick="closestatusbar();"><i class="fas fa-times"></i></span>
+    </div>
+    {/if}
+    <section class="section-detail-product">
+        <div class="div-photo-detail-product">
+            <img class="photo-detail-product" src="{$product.photoproduct}" alt="">
+        </div>
+        <div class="info-detail-product">
+            <h1 class="title-detail-product">{$product.nameproduct}</h1>
+            <nav class="categories-detail-product">
+                {loop="$categories"}
+                <li><a href="/categories-list/{$value.idcategory}"
+                        class="link-categories-detail-product">{$value.namecategory}</a></li>
+                {/loop}
+            </nav>
+            <ins class="price-detail-product">R$ {function="formatPrice($product.vlprice)"}</ins>
+            <p class="description-detail-product">{$product.descriptionproduct}
+            </p>
+            <form class="form-detail-product" action="/cart/{$product.idproduct}/add">
+                <label for="qtd">Quantidade</label>
+                <input class="input-detail-product" type="number" step="1" min="1" value="1" name="qtd" id="qtd">
+                <button type="submit" class="btn btn-medium btn-green"><i class="fas fa-shopping-cart"></i> Adicionar ao
+                    Carrinho</button>
+            </form>
+        </div>
+    </section>
+    <section class="section-product-review">
+        <form class="form" action="/product-details/{$product.idproduct}/postcomment/{$product.urlproduct}"
+            method="POST">
+            <label class="post-comment">Escrever Comentário sobre o produto</label>
+            <textarea class="input-form" name="reviewproduct" id="reviewproduct" cols="30" rows="5"
+                placeholder="Insira um comentário"></textarea>
+            <div class="form-btns">
+                <button type="submit" class="btn btn-medium btn-blue"><i class="fa-solid fa-share"></i> Enviar
+                    Comentário</button>
+            </div>
+        </form>
+        <span class="post-comment">Veja o que os clientes dizem sobre o produto: </span>
+        <div class="div-users-reviews">
+            {loop="$reviews"}
+            <div class="post-user-review">
+                <span class="username-post">{$value.nameperson} diz:</span>
+                <div class="content-comment-post">
+                    <img src="{$value.photouser}" alt="" class="img-user-post-review">
+                    <p class="post-user">{$value.commentproduct}</p>
+                </div>
+                <p class="content-date-comment-post">Comentário postado em {$value.dtcomment}</p>
+            </div>
+            {/loop}
+        </div>
+    </section>
+</main>
