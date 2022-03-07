@@ -6,7 +6,7 @@
         
         {loop="$products"} 
         <input name="itemId{$counter+1}" type="hidden" value="{$value.idproduct}">  
-        <input name="itemDescription{$counter+1}" type="hidden" value="{$value.desproduct}">  
+        <input name="itemDescription{$counter+1}" type="hidden" value="{$value.nameproduct}">  
         <input name="itemAmount{$counter+1}" type="hidden" value="{$value.vltotal}">  
         <input name="itemQuantity{$counter+1}" type="hidden" value="{$value.nrqtd}">  
         <input name="itemWeight{$counter+1}" type="hidden" value="{$value.vlweight*1000}">  
@@ -16,20 +16,20 @@
           
         <!-- Informações de frete (opcionais) -->  
         <input name="shippingType" type="hidden" value="1">
-        <input name="shippingAddressPostalCode" type="hidden" value="{$order.deszipcode}">  
-        <input name="shippingAddressStreet" type="hidden" value="{function="utf8_encode($order.desaddress)"}">  
-        <input name="shippingAddressNumber" type="hidden" value="{function="utf8_encode($order.desnumber)"}">  
-        <input name="shippingAddressComplement" type="hidden" value="{function="utf8_encode($order.descomplement)"}">  
-        <input name="shippingAddressDistrict" type="hidden" value="{function="utf8_encode($order.desdistrict)"}">  
-        <input name="shippingAddressCity" type="hidden" value="{function="utf8_encode($order.descity)"}">
-        <input name="shippingAddressState" type="hidden" value="{function="utf8_encode($order.desstate)"}"> 
-        <input name="shippingAddressCountry" type="hidden" value="{function="utf8_encode($order.descountry)"}">  
+        <input name="shippingAddressPostalCode" type="hidden" value="{$order.zipcode}">  
+        <input name="shippingAddressStreet" type="hidden" value="{function="utf8_encode($order.address)"}">  
+        <input name="shippingAddressNumber" type="hidden" value="{function="utf8_encode($order.number)"}">  
+        <input name="shippingAddressComplement" type="hidden" value="{function="utf8_encode($order.complement)"}">  
+        <input name="shippingAddressDistrict" type="hidden" value="{function="utf8_encode($order.district)"}">  
+        <input name="shippingAddressCity" type="hidden" value="{function="utf8_encode($order.city)"}">
+        <input name="shippingAddressState" type="hidden" value="{function="utf8_encode($order.state)"}"> 
+        <input name="shippingAddressCountry" type="hidden" value="{function="utf8_encode($order.country)"}">  
   
         <!-- Dados do comprador (opcionais) -->  
-        <input name="senderName" type="hidden" value="{function="utf8_encode($order.desperson)"}">  
+        <input name="senderName" type="hidden" value="{function="utf8_encode($order.nameperson)"}">  
         <input name="senderAreaCode" type="hidden" value="{$phone.areaCode}">  
         <input name="senderPhone" type="hidden" value="{$phone.number}">  
-        <input name="senderEmail" type="hidden" value="{$order.desemail}">  
+        <input name="senderEmail" type="hidden" value="{$order.emailuser}">  
           
 </form>  
 <script type="text/javascript">
